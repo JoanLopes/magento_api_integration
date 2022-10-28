@@ -39,17 +39,11 @@ Execute o docker-compose:
   docker-compose up -d
 ```
 
-Entre no container PHP:
+Execute os comandos:
 
 ```bash
-  docker exec -it php8-sf6 bash
-```
-
-Execute o comando:
-
-```bash
-  composer install
-  symfony serve -d
+  docker exec -it php8-sf6 composer install
+  docker exec -it php8-sf6  symfony serve -d
 ```
 
 após isso acesse:
