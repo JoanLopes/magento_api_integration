@@ -10,6 +10,27 @@ Clone o projeto:
   https://github.com/JoanLopes/teste_dizy.git
 ```
 
+## Instalação via Composer
+
+Execute o comando:
+
+```bash
+  composer install
+  symfony serve -d
+```
+após isso acesse:
+
+```http request
+  http://localhost:8000
+```
+
+### Requisitos
+
+- PHP 8.1
+- Composer 2
+
+## Instalação via docker
+
 Execute o docker-compose:
 
 ```bash
@@ -38,7 +59,7 @@ após isso acesse:
 
 e insira as credenciais disponibilizadas para o teste.
 
-## Docker-compose
+### Docker-compose
 
 - PHP-8.1-cli (Debian)
     - Composer
@@ -48,7 +69,7 @@ e insira as credenciais disponibilizadas para o teste.
 
 
 
-## Requisitos
+### Requisitos
 
 - Docker
 - Docker-compose
