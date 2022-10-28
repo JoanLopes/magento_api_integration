@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="assets/css/form_login.css">
+    </head>
+    <body>
+        <section class="form">
+            <form id='credenciais' action="login" method="post">
+                <div class="container">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </section>
+
+    </body>
+    <footer>
+        <script>
+            let bearer;
+
+            let form = document.getElementById('credenciais');
+            form.onsubmit = function(event){
+                let xhr = new XMLHttpRequest();
+                let formData = new FormData(form);
+
+                xhr.open('POST','{{ path('app_admin_token') }}')
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify(Object.fromEntries(formData)));
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        window.location.href = "/order"
+                    }
+                }
+                return false;
+            }
+        </script>
+    </footer>
+</html>
