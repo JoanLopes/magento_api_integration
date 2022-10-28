@@ -8,7 +8,7 @@
             <form id='credenciais' action="/" method="post">
                 <div class="container">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <input id="user"type="text" placeholder="Enter Username" name="username" required>
                     <label for="password">Password</label>
                     <input type="password" placeholder="Enter Password" name="password" required>
                     <button type="submit">Login</button>
@@ -22,21 +22,28 @@
             let bearer;
 
             let form = document.getElementById('credenciais');
-            form.onsubmit = function(event){
-                let xhr = new XMLHttpRequest();
-                let formData = new FormData(form);
+            if (typeof form !== 'null') {
+                form.onsubmit = function (event) {
+                    let xhr = new XMLHttpRequest();
+                    let formData = new FormData(form);
 
-                xhr.open('POST','{{ path('app_admin_token') }}')
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(JSON.stringify(Object.fromEntries(formData)));
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        window.location.href = "/order"
+                    xhr.open('POST', '{{ path('app_admin_token') }}')
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(JSON.stringify(Object.fromEntries(formData)));
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+
+                            if (xhr.status === 200) {
+                                window.location.href = "/order"
+                            } else {
+                                alert("credenciais não conferem");
+                                window.location.href = "/";
+                                return false;
+                            }
+
+                        }
                     }
                 }
-                alert("credenciais não conferem");
-                window.location.href = "/";
-                return false;
             }
         </script>
     </footer>
