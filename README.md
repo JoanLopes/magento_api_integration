@@ -1,7 +1,5 @@
 # Teste Full Stack 
 
-#### Symfony 6.1 + PHP 8.1 com Docker
-
 ## Execute Localmente
 
 Clone o projeto:
@@ -28,9 +26,12 @@ e insira as credenciais disponibilizadas para o teste.
 ### Requisitos
 
 - PHP 8.1
-- Composer 2
+- [Composer 2](https://getcomposer.org/download/)
+- [Symfony](https://symfony.com/download)
 
 ## Instalação via docker
+
+#### Symfony 6.1 + PHP 8.1 com Docker
 
 Execute o docker-compose:
 
@@ -38,14 +39,6 @@ Execute o docker-compose:
   docker-compose build
   docker-compose up -d
 ```
-
-Execute os comandos:
-
-```bash
-  docker exec -it php8-sf6 composer install
-  docker exec -it php8-sf6  symfony serve -d
-```
-
 após isso acesse:
 
 ```http request
@@ -59,10 +52,8 @@ e insira as credenciais disponibilizadas para o teste.
 - PHP-8.1-cli (Debian)
     - Composer
     - Symfony CLI
-    - and some other php extentions
+    - outras extençoes do PHP
     - nodejs, npm, yarn
-
-
 
 ### Requisitos
 

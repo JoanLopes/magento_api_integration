@@ -1,5 +1,11 @@
 FROM php:8.1-cli
 
+RUN mkdir -p /var/www/teste_dizy
+WORKDIR /var/www/teste_dizy
+
+COPY composer.json /var/www/teste_dizy/
+COPY composer.lock /var/www/teste_dizy/
+
 RUN apt-get update \
     &&  apt-get install -y --no-install-recommends \
         locales apt-utils git libicu-dev g++ libpng-dev libxml2-dev libzip-dev libonig-dev libxslt-dev unzip libpq-dev nodejs npm wget \
@@ -18,7 +24,8 @@ RUN docker-php-ext-configure \
             pdo pdo_mysql pdo_pgsql opcache intl zip calendar dom mbstring gd xsl
 
 RUN pecl install apcu && docker-php-ext-enable apcu
-
 CMD tail -f /dev/null
 
-WORKDIR /var/www/html/
+COPY . .
+
+RUN composer install

@@ -1,12 +1,13 @@
 version: '3.7'
 services:
     php8-sf6:
+        build: .
         container_name: php8-sf6
-        build: php8-sf6
+        command: symfony serve
         ports:
             - "9000:8000"
         volumes:
-            - ./:/var/www/html
+            - .:/var/www/teste_dizy
 
 volumes:
-  db-data:
+    db-data:
