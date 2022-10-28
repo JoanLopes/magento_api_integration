@@ -54,8 +54,7 @@ class OrderController extends AbstractController
         $orders= $paginator->paginate($collection, $page,15);
 
         return $this->render('order.html.twig',[
-            'orders' => $orders,
-            'auth' => $auth
+            'orders' => $orders
         ]);
 
     }
