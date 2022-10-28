@@ -23,6 +23,7 @@ após isso acesse:
 ```http request
   http://localhost:8000
 ```
+e insira as credenciais disponibilizadas para o teste.
 
 ### Requisitos
 
