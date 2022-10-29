@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\CollectionService;
 use App\Service\OrderService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\PaginatorInterface;
@@ -38,24 +39,13 @@ class OrderController extends AbstractController
         }
         $auth = $session->get('token');
         $orderService = new OrderService();
-        $orders = $orderService->getToken($auth);
-        $arrayOrder = json_decode( $orders->getContent(),true);
-        $orderArr = [];
-        foreach ($arrayOrder['items'] as $arr ) {
-
-            $arrayIntersect = [
-                'customer_email' =>'',
-                'customer_firstname'=>'',
-                'grand_total'=>''
-            ];
-            $orderArr[] = array_intersect_key($arr, $arrayIntersect);
-        }
-        $collection = new ArrayCollection($orderArr);
+        $orders = $orderService->getOrder($auth);
+        $collectionService = new CollectionService();
+        $collection = $collectionService->jsonToCollection($orders);
         $orders= $paginator->paginate($collection, $page,15);
 
         return $this->render('order.html.twig',[
             'orders' => $orders
         ]);
-
     }
 }

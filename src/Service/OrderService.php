@@ -17,7 +17,7 @@ class OrderService
     private string $url = "https://dc98dbb.dizycommerce.com.br/index.php";
     private string $path = "/rest/V1/orders/";
 
-    public function getToken(string $bearerToken): JsonResponse
+    public function getOrder(string $bearerToken): JsonResponse
     {
         $client = HttpClient::create();
         $response = $client ->request(
