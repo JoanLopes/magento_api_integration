@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" type="image/png"  href="/favicon.ico">
         <link rel="stylesheet" type="text/css" href="assets/css/form_login.css">
     </head>
     <body>
@@ -23,25 +24,23 @@
 
             let form = document.getElementById('credenciais');
             if (typeof form !== 'null') {
-                form.onsubmit = function (event) {
-                    let xhr = new XMLHttpRequest();
+                form.onsubmit = async function (event) {
+                    event.preventDefault();
                     let formData = new FormData(form);
-
-                    xhr.open('POST', '{{ path('app_admin_token') }}')
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify(Object.fromEntries(formData)));
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                            if (xhr.status === 200) {
-                                window.location.href = "/order"
-                            } else {
-                                alert("credenciais não conferem");
-                                window.location.href = "/";
-                                return false;
-                            }
-
-                        }
+                    let options = {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(Object.fromEntries(formData))
+                    }
+                    const response = await fetch('{{ path('app_admin_token') }}', options);
+                    const json = await response.json();
+                    if (response.status === 200) {
+                        window.location.href = "/order"
+                        return json;
+                    } else {
+                        alert("credenciais não conferem");
+                        return json;
                     }
                 }
             }
