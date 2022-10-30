@@ -17,25 +17,36 @@ class OrderService
     private string $url = "https://dc98dbb.dizycommerce.com.br/index.php";
     private string $path = "/rest/V1/orders/";
 
-    public function getOrder(string $bearerToken): JsonResponse
+    public function getOrder(string $bearerToken, $direction, $field): JsonResponse
     {
+
         $client = HttpClient::create();
-        $response = $client ->request(
+        $response = $client->request(
             'GET',
-            $this->url.$this->path,
+            $this->url . $this->path,
             [
                 'auth_bearer' => $bearerToken,
-                'query' => [
-                    'searchCriteria[filterGroups][0][filters][0][field]' => 'customer_email',
-                    'searchCriteria[filterGroups][0][filters][0][value]' => '',
-                    'searchCriteria[filterGroups][0][filters][0][conditionType]' => 'neq'
-                ],
+                'query' => $this->getQuery($direction, $field)
             ],
         );
         $statusCode = $response->getStatusCode();
 
         $content = $response->toArray();
 
-        return new JsonResponse($content,$statusCode);
+        return new JsonResponse($content, $statusCode);
+    }
+
+    private function getQuery($direction, $field)
+    {
+        $query = [
+            'searchCriteria[filterGroups][0][filters][0][field]' => 'customer_email',
+            'searchCriteria[filterGroups][0][filters][0][value]' => '',
+            'searchCriteria[filterGroups][0][filters][0][conditionType]' => 'neq',
+        ];
+        if($direction != '' && $field != ''){
+            $query['searchCriteria[sortOrders][0][direction]']= $direction;
+            $query['searchCriteria[sortOrders][0][field]']= $field;
+        }
+        return $query;
     }
 }

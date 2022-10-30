@@ -9,7 +9,6 @@ use App\Service\OrderService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
@@ -31,6 +30,8 @@ class OrderController extends AbstractController
     public function getOrder(PaginatorInterface $paginator, Request $request): Response
     {
         $page = $request->query->getInt('page',1);
+        $field = $request->query->get('sort');
+        $direction = $request->query->getAlpha('direction');
         $auth = $request->headers->get('Authorization');
         $session = new Session(new NativeSessionStorage(), new AttributeBag());
         if (!empty($auth)) {
@@ -39,7 +40,7 @@ class OrderController extends AbstractController
         }
         $auth = $session->get('token');
         $orderService = new OrderService();
-        $orders = $orderService->getOrder($auth);
+        $orders = $orderService->getOrder($auth,$direction,$field);
         $collectionService = new CollectionService();
         $collection = $collectionService->jsonToCollection($orders);
         $orders= $paginator->paginate($collection, $page,15);

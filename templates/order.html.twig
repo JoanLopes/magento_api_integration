@@ -24,11 +24,24 @@
     <div class="navigation">
         <div class="container" >
 
+
             <table>
                 <tr>
-                    <th>E-mail</th>
-                    <th>Primeiro Nome</th>
-                    <th>Total</th>
+                    <th>
+                        E-mail
+                        {{ knp_pagination_sortable(orders, '⇧', 'customer_email', {'defaultDirection' : 'desc'}) }}
+                        {{ knp_pagination_sortable(orders, '⇩', 'customer_email', {'defaultDirection' : 'asc'}) }}
+                    </th>
+                    <th>
+                        Primeiro Nome
+                        {{ knp_pagination_sortable(orders, '⇧', 'customer_firstname', {'defaultDirection' : 'desc'}) }}
+                        {{ knp_pagination_sortable(orders, '⇩', 'customer_firstname', {'defaultDirection' : 'asc'}) }}
+                    </th>
+                    <th>
+                        Total
+                        {{ knp_pagination_sortable(orders, '⇧', 'grand_total', {'defaultDirection' : 'desc'}) }}
+                        {{ knp_pagination_sortable(orders, '⇩', 'grand_total', {'defaultDirection' : 'asc'}) }}
+                    </th>
                 </tr>
                 {% for order in orders %}
                 <tr>
