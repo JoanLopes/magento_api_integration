@@ -11,9 +11,39 @@
   margin: 5% 20%;
 }
 
-topo {
-  height: 50px;
-  background: #4f4e4f;
+.topo {
+  background-color: #adadad;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  border-bottom: 2px solid #000000;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  margin-left: 20px;
+  color: #ffffff;
+}
+.sair {
+  float: right;
+  color: #fff;
+  margin-right: 20px;
+  margin-top: -25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+p {
+  font-size: 20px;
+  margin-top: 18px;
+  position: absolute;
+}
+img {
+  width: 12px;
+  filter: invert(1);
 }
 
 table {
@@ -23,14 +53,13 @@ table {
   border-collapse: collapse;
   border-radius: 10px;
   overflow: hidden;
-  border: 10px;
 }
 
 
 table td, table th {
-  border: 1px solid #ddd;
   padding: 8px;
   padding: 5px 5px;
+
 }
 
 table tr:nth-child(even){background-color: #f2f2f2;}
@@ -50,12 +79,12 @@ table th {
   text-align: center;
 }
 span {
-  background-color: #696969;
+  background-color: #69696982;
   color: #f1f1f1;
   font-size: 16px;
   margin: 2px;
   margin-top: 10px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10%;
 }
 
@@ -63,4 +92,20 @@ a {
   color: #000;
   text-decoration: none;
   font-family: "Droid Sans";
+}
+
+
+@media screen and (max-width: 1000px) {
+  .container {
+    width: 100%;
+    margin: 15% 0%;
+  }
+
+  table {
+    font-size: 25px;
+  }
+  table td, table th {
+    padding: 28px;
+  }
+
 }

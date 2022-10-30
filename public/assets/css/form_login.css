@@ -7,15 +7,27 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+H2 {
+  text-align: center;
+  font-weight: 400;
+}
+
+label {
+  font-size: 15px;
+  font-weight: 400;
+}
+
 button {
   background-color: #3f4040;
   color: white;
-  border-radius: 7%;
+  border-radius: 10%;
   padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+  margin: 5% 37%;
   cursor: pointer;
-  width: 100%;
 }
 
 button:hover {
@@ -33,17 +45,44 @@ button:hover {
 
 }
 
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
 
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
+@media screen and (max-width: 1000px) {
+  .container {
+    max-width: 80%;
+    border: 3px solid #f1f1f1;
+    border-radius: 5%;
+    box-shadow: 5px 5px 30px #cccccc ;
+    margin: 50% 4%;
   }
-  .cancelbtn {
+
+  [type=text], input[type=password] {
+    padding: 25px 16px;
+    margin: 25px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+
+  H2 {
+    font-size: 42px;
+  }
+
+  label {
+    font-size: 22px;
+  }
+
+  button {
+    background-color: #3f4040;
+    color: white;
+    padding: 23px 114px;
+    cursor: pointer;
     width: 100%;
+    font-size: 28px;
   }
+
+  button:hover {
+    opacity: 1;
+  }
+
 }
