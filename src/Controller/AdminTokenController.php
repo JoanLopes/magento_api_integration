@@ -28,4 +28,12 @@ class AdminTokenController extends AbstractController
 
         return new JsonResponse("{$arrayReq['username']}", $arr[1]);
     }
+
+    #[Route('/logout', name: 'logout')]
+    public function logout(Request $request): Response
+    {
+        $session = new Session(new NativeSessionStorage(), new AttributeBag());
+        $session->remove('token');
+        return new JsonResponse("session finalizada!", 200);
+    }
 }
