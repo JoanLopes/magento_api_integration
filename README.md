@@ -60,3 +60,10 @@ e insira as credenciais disponibilizadas para o teste.
 - Docker
 - Docker-compose
 
+#### Tela de login
+
+![login](https://github.com/JoanLopes/teste_dizy/blob/main/public/assets/img/login.png)
+
+#### Tela de consulta
+
+![tela de consulta](https://github.com/JoanLopes/teste_dizy/blob/main/public/assets/img/tabela.png)
