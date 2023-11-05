@@ -5,7 +5,7 @@
 Clone o projeto:
 
 ```bash
-  https://github.com/JoanLopes/teste_dizy.git
+  https://github.com/JoanLopes/magento_api_integration.git
 ```
 
 ## Instalação via Composer
